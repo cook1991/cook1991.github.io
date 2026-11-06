@@ -48,6 +48,13 @@
       "url": "https://github.com/cook1991/cook1991.github.io/releases/download/skycast-v1.2/SkyCast-v1.2.apk",
       "versionCode": 3,
       "versionName": "1.2"
+    },
+    "spritzstore": {
+      "sha256": "befccfda838434e3cbc602f4d8e6b8543fab068782e677b4aebd889b064897fa",
+      "size": 14184375,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/spritzstore-v1.8/SpritzStore-1.8.apk",
+      "versionCode": 9,
+      "versionName": "1.8"
     }
   }
 }
