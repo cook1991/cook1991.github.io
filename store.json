@@ -50,11 +50,11 @@
       "versionName": "1.2"
     },
     "spritzstore": {
-      "sha256": "befccfda838434e3cbc602f4d8e6b8543fab068782e677b4aebd889b064897fa",
+      "sha256": "732a4bd818fd360174869a243614d62289cc7ce789d48b51336de64a2794ae53",
       "size": 14184375,
-      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/spritzstore-v1.8/SpritzStore-1.8.apk",
-      "versionCode": 9,
-      "versionName": "1.8"
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/spritzstore-v1.9/SpritzStore-1.9.apk",
+      "versionCode": 10,
+      "versionName": "1.9"
     }
   }
 }
