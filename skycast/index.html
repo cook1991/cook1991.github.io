@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyCast — Local weather, beautifully simple</title>
+<meta name="description" content="SkyCast is a fast, private weather app for Android. Current conditions, hourly and 7-day forecast, sunrise/sunset, precipitation chance. No ads, no tracking, no account.">
+<meta property="og:title" content="SkyCast — Weather Forecast">
+<meta property="og:description" content="Fast, private weather with a 7-day forecast. No ads, no tracking, no account.">
+<meta property="og:image" content="img/feature.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/icon.png">
+<style>
+  :root{
+    --bg:#0A0E14; --surface:#141B26; --surface2:#16202e;
+    --text:#E6EDF3; --muted:#8899AA; --track:#223040;
+    --cyan:#00E5FF; --orange:#FF6D00;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Roboto,-apple-system,system-ui,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan);text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(10,14,20,.82);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--track);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+  .brand img{width:32px;height:32px;border-radius:8px}
+  .brand .cast{color:var(--cyan)}
+  .btn{
+    display:inline-block;background:var(--cyan);color:#04252b;font-weight:700;
+    padding:12px 22px;border-radius:999px;font-size:16px;border:none;cursor:pointer;
+    transition:transform .08s ease, filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.08)}
+  .btn:active{transform:translateY(1px)}
+  .btn.small{padding:9px 18px;font-size:15px}
+
+  /* Hero */
+  .hero{
+    text-align:center;padding:70px 0 40px;
+    background:radial-gradient(900px 500px at 50% -10%, #16202e 0%, var(--bg) 65%);
+  }
+  .hero .appicon{width:120px;height:120px;border-radius:28px;box-shadow:0 12px 40px rgba(0,0,0,.5);}
+  .hero h1{font-size:clamp(40px,8vw,66px);font-weight:800;letter-spacing:-1px;margin:22px 0 6px;line-height:1}
+  .hero h1 .cast{color:var(--cyan)}
+  .hero .tag{font-size:clamp(18px,3.5vw,24px);font-weight:600;color:var(--text)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 30px}
+  .chip{font-size:14px;font-weight:600;padding:7px 15px;border-radius:999px;background:var(--track);color:var(--muted)}
+  .chip.c{background:var(--cyan);color:#04252b}
+  .chip.o{background:var(--orange);color:#241100}
+  .meta{margin-top:16px;color:var(--muted);font-size:14px}
+
+  section{padding:52px 0}
+  h2{font-size:28px;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:-.5px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:34px}
+
+  /* Screenshots */
+  .shots{display:flex;gap:18px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x mandatory}
+  .shots img{
+    width:240px;flex:0 0 auto;border-radius:22px;border:1px solid var(--track);
+    scroll-snap-align:center;background:var(--surface);
+  }
+
+  /* Features */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--track);border-radius:16px;padding:22px}
+  .card .ic{font-size:26px}
+  .card h3{font-size:17px;margin:10px 0 4px}
+  .card p{color:var(--muted);font-size:14.5px}
+
+  /* Install steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;counter-reset:s}
+  .step{background:var(--surface);border:1px solid var(--track);border-radius:16px;padding:22px;position:relative}
+  .step::before{
+    counter-increment:s;content:counter(s);
+    display:flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;background:var(--cyan);color:#04252b;font-weight:800;margin-bottom:12px;
+  }
+  .note{margin-top:18px;color:var(--muted);font-size:13.5px;text-align:center}
+  .dlrow{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;margin-top:28px}
+  .qr{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .qr img{width:150px;height:150px;background:#fff;padding:12px;border-radius:16px;display:block}
+  .qr span{color:var(--muted);font-size:13px;text-align:center;line-height:1.35}
+
+  footer{border-top:1px solid var(--track);padding:34px 0 50px;color:var(--muted);text-align:center;font-size:14px}
+  footer .dl{margin:18px 0}
+  .center{text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="img/icon.png" alt="SkyCast icon">Sky<span class="cast">Cast</span></div>
+    <a class="btn small" href="#download">Download</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <img class="appicon" src="img/icon.png" alt="SkyCast app icon">
+    <h1>Sky<span class="cast">Cast</span></h1>
+    <div class="tag">Local weather, beautifully simple.</div>
+    <div class="chips">
+      <span class="chip c">No ads</span>
+      <span class="chip o">No tracking</span>
+      <span class="chip">No account</span>
+      <span class="chip">7-day forecast</span>
+    </div>
+    <a class="btn" href="#download">Download for Android</a>
+    <div class="meta">Android 8.0+ &nbsp;·&nbsp; ~1.4&nbsp;MB &nbsp;·&nbsp; v1.1</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>See it</h2>
+    <p class="sub">Current conditions, search anywhere, and a full 7-day outlook.</p>
+    <div class="shots">
+      <img src="img/shot1.png" alt="SkyCast current conditions" loading="lazy">
+      <img src="img/shot2.png" alt="SkyCast city search" loading="lazy">
+      <img src="img/shot3.png" alt="SkyCast 7-day forecast" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface2)">
+  <div class="wrap">
+    <h2>Everything you need, nothing you don't</h2>
+    <p class="sub">The weather, and only the weather.</p>
+    <div class="grid">
+      <div class="card"><div class="ic">🌡️</div><h3>Now, at a glance</h3><p>Temperature, "feels like", and conditions on a clean temperature dial.</p></div>
+      <div class="card"><div class="ic">🕐</div><h3>Hourly &amp; 7-day</h3><p>The next 24 hours plus a week ahead with daily highs and lows.</p></div>
+      <div class="card"><div class="ic">💧</div><h3>Rain chance</h3><p>Precipitation probability for the hour and each day.</p></div>
+      <div class="card"><div class="ic">🌅</div><h3>Sun times</h3><p>Sunrise and sunset for wherever you're looking.</p></div>
+      <div class="card"><div class="ic">🔎</div><h3>Anywhere</h3><p>Use your location, or search any city in the world.</p></div>
+      <div class="card"><div class="ic">🔒</div><h3>Private</h3><p>No ads, no analytics, no account. Location is only used to fetch weather.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <h2>Install it</h2>
+    <p class="sub">Sideload the app in three steps.</p>
+    <div class="steps">
+      <div class="step"><h3>Download</h3><p>Tap the button below on your Android phone to get the APK.</p></div>
+      <div class="step"><h3>Allow install</h3><p>Your phone will ask to allow installing from this source — tap Allow / Settings, then enable it.</p></div>
+      <div class="step"><h3>Open</h3><p>Install, open SkyCast, and allow approximate location (or just search a city).</p></div>
+    </div>
+    <div class="dlrow">
+      <div class="center">
+        <a class="btn" href="https://github.com/cook1991/cook1991.github.io/releases/download/skycast-v1.2/SkyCast-v1.2.apk" download>Download APK (v1.2)</a>
+        <div class="meta">Signed release · Android 8.0+ · needs an internet connection</div>
+      </div>
+      <div class="qr">
+        <img src="img/qr.png" alt="QR code to open this page on your phone">
+        <span>Scan to open<br>on your phone</span>
+      </div>
+    </div>
+    <p class="note">This is the direct-download build for sideloading. To switch to a Play Store version later, uninstall this one first.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="dl"><a class="btn small" href="https://github.com/cook1991/cook1991.github.io/releases/download/skycast-v1.2/SkyCast-v1.2.apk" download>Download APK</a></div>
+    <p>Weather data by <a href="https://open-meteo.com" rel="noopener">Open-Meteo</a>. &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    <p style="margin-top:8px">Questions? <a href="mailto:jason@spritzlive.net">jason@spritzlive.net</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

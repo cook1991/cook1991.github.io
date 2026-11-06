@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AuthVault — Offline TOTP/HOTP Authenticator</title>
+<meta name="description" content="AuthVault is a free, ad-free, no-tracking, no-internet-permission TOTP/HOTP authenticator for Android. Your codes never leave your phone.">
+<meta property="og:title" content="AuthVault — Offline Authenticator">
+<meta property="og:description" content="A free, ad-free, no-tracking, no-internet-permission authenticator for Android.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0B1210; --surface:#111A17; --surface2:#132019;
+    --text:#E8F1EC; --muted:#88A398; --track:#1F2E27;
+    --green:#2EE6A6; --amber:#FFB24D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Roboto,-apple-system,system-ui,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--green);text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(11,18,16,.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--track);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+  .brand .vault{color:var(--green)}
+  .btn{
+    display:inline-block;background:var(--green);color:#042018;font-weight:700;
+    padding:12px 22px;border-radius:999px;font-size:16px;border:none;cursor:pointer;
+    transition:transform .08s ease, filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.08)}
+  .btn:active{transform:translateY(1px)}
+  .btn.small{padding:9px 18px;font-size:15px}
+
+  .hero{
+    text-align:center;padding:70px 0 40px;
+    background:radial-gradient(900px 500px at 50% -10%, #132019 0%, var(--bg) 65%);
+  }
+  .hero .icon{font-size:72px;line-height:1}
+  .hero h1{font-size:clamp(40px,8vw,60px);font-weight:800;letter-spacing:-1px;margin:14px 0 6px;line-height:1}
+  .hero h1 .vault{color:var(--green)}
+  .hero .tag{font-size:clamp(18px,3.5vw,24px);font-weight:600;color:var(--text)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 30px}
+  .chip{font-size:14px;font-weight:600;padding:7px 15px;border-radius:999px;background:var(--track);color:var(--muted)}
+  .chip.g{background:var(--green);color:#042018}
+  .chip.a{background:var(--amber);color:#241500}
+  .meta{margin-top:16px;color:var(--muted);font-size:14px}
+
+  section{padding:52px 0}
+  h2{font-size:28px;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:-.5px}
+  .sub{text-align:center;color:var(--muted);margin-bottom:34px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--track);border-radius:16px;padding:22px}
+  .card .ic{font-size:26px}
+  .card h3{font-size:17px;margin:10px 0 4px}
+  .card p{color:var(--muted);font-size:14.5px}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;counter-reset:s}
+  .step{background:var(--surface);border:1px solid var(--track);border-radius:16px;padding:22px;position:relative}
+  .step::before{
+    counter-increment:s;content:counter(s);
+    display:flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;background:var(--green);color:#042018;font-weight:800;margin-bottom:12px;
+  }
+  .note{margin-top:18px;color:var(--muted);font-size:13.5px;text-align:center}
+  .dlrow{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;margin-top:28px}
+  .center{text-align:center}
+  code.hash{display:inline-block;max-width:100%;overflow-wrap:break-word;color:var(--muted);font-size:12.5px;background:var(--surface);border:1px solid var(--track);border-radius:8px;padding:8px 12px;margin-top:14px}
+
+  footer{border-top:1px solid var(--track);padding:34px 0 50px;color:var(--muted);text-align:center;font-size:14px}
+  footer .dl{margin:18px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">🔐 Auth<span class="vault">Vault</span></div>
+    <a class="btn small" href="#download">Download</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="icon">🔐</div>
+    <h1>Auth<span class="vault">Vault</span></h1>
+    <div class="tag">An offline two-factor authenticator for Android.</div>
+    <div class="chips">
+      <span class="chip g">No ads</span>
+      <span class="chip a">No tracking</span>
+      <span class="chip">No internet permission</span>
+      <span class="chip">TOTP + HOTP</span>
+    </div>
+    <a class="btn" href="#download">Download for Android</a>
+    <div class="meta">Android 8.0+ &nbsp;·&nbsp; ~13&nbsp;MB &nbsp;·&nbsp; v1.1</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Why another authenticator app?</h2>
+    <p class="sub">
+      Google Authenticator, Microsoft Authenticator, and Authy all ask for permissions and
+      cloud sync a local code generator has no real need for. AuthVault doesn't request the
+      internet permission at all — your two-factor secrets can't leave the device even if
+      something tried to make them.
+    </p>
+    <div class="grid">
+      <div class="card"><div class="ic">🔢</div><h3>TOTP &amp; HOTP</h3><p>Time-based and counter-based one-time codes, for sites that still issue HOTP hardware-token-style secrets.</p></div>
+      <div class="card"><div class="ic">🚫</div><h3>No internet permission</h3><p>The app can't phone home — there's nothing in the manifest that lets it try.</p></div>
+      <div class="card"><div class="ic">🔒</div><h3>Encrypted local vault</h3><p>Secrets are encrypted at rest using Android Keystore-backed keys, unlocked by your device's own lock screen.</p></div>
+      <div class="card"><div class="ic">💾</div><h3>Encrypted backup &amp; restore</h3><p>Move to a new phone with a passphrase-protected backup file — no account, no cloud.</p></div>
+      <div class="card"><div class="ic">📷</div><h3>Import from Google Authenticator</h3><p>Reads the standard "Transfer accounts" export QR, so switching over doesn't mean re-enrolling every site.</p></div>
+      <div class="card"><div class="ic">🆓</div><h3>Free, no ads</h3><p>It's a utility, not a product with a business model.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="download" style="background:var(--surface2)">
+  <div class="wrap">
+    <h2>Install it</h2>
+    <p class="sub">AuthVault isn't on the Play Store yet — sideload the APK directly.</p>
+    <div class="steps">
+      <div class="step"><h3>Download</h3><p>Tap the button below on your Android phone to get the APK.</p></div>
+      <div class="step"><h3>Allow install</h3><p>Your phone will ask to allow installing from this source — tap Allow / Settings, then enable it.</p></div>
+      <div class="step"><h3>Open</h3><p>Install, open AuthVault, and scan or manually enter your 2FA accounts.</p></div>
+    </div>
+    <div class="dlrow">
+      <div class="center">
+        <a class="btn" href="https://github.com/cook1991/cook1991.github.io/releases/download/authvault-v1.2/AuthVault-v1.2.apk" download>Download APK (v1.2)</a>
+        <div class="meta">Signed release · Android 8.0+ · works fully offline</div>
+        <div class="center"><code class="hash">SHA-256: 0d43e84e10e8296431174f82add4775a753cf883fa8d83ae42b463c62f269526</code></div>
+      </div>
+    </div>
+    <p class="note">This is a direct-install build signed with our own key. If this ever moves to the Play Store, you'd need to uninstall this sideloaded copy first, since Play uses a different signing key.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="dl"><a class="btn small" href="https://github.com/cook1991/cook1991.github.io/releases/download/authvault-v1.2/AuthVault-v1.2.apk" download>Download APK</a></div>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p style="margin-top:8px">Questions? <a href="mailto:jason@spritzlive.net">jason@spritzlive.net</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

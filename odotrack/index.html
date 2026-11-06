@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OdoTrack — Free GPS Speedometer &amp; Trip Odometer, No Ads</title>
+  <meta name="description" content="A clean, accurate GPS speedometer and trip odometer for Android. No ads, no tracking, no internet permission. Completely free.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="OdoTrack — Free GPS Speedometer &amp; Trip Odometer">
+  <meta property="og:description" content="A clean GPS speedometer and trip odometer. No ads, no tracking, completely free.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg-top:#0a0e14; --bg-bot:#141b26; --surface:#172130;
+      --accent:#00e5ff; --warm:#ff6d00; --text:#e6edf3; --muted:#8899aa;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; background:linear-gradient(165deg,var(--bg-top),var(--bg-bot) 70%);
+      color:var(--text); line-height:1.6;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap { max-width:1040px; margin:0 auto; padding:0 22px; }
+
+    /* Hero */
+    header { padding:70px 0 40px; }
+    .hero { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+    .hero-copy { flex:1 1 320px; }
+    .brand { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+    h1 { font-size:clamp(2.2rem,6vw,3.4rem); margin:0; letter-spacing:-.03em; line-height:1.05; }
+    .tagline { font-size:1.25rem; color:var(--muted); margin:16px 0 24px; }
+    .chips { margin:0 0 30px; }
+    .chip {
+      display:inline-block; margin:0 8px 8px 0; padding:6px 15px;
+      border:1px solid var(--accent); border-radius:22px;
+      color:var(--accent); font-size:.85rem; font-weight:600;
+    }
+    .hero-art { flex:0 0 auto; margin:0 auto; }
+
+    /* Play button */
+    .cta { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .play-btn {
+      display:inline-flex; align-items:center; gap:12px; text-decoration:none;
+      background:var(--accent); color:#04121a; font-weight:700;
+      padding:14px 24px; border-radius:14px; font-size:1.05rem;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow:0 8px 30px rgba(0,229,255,.22);
+    }
+    .play-btn:hover { transform:translateY(-2px); box-shadow:0 12px 38px rgba(0,229,255,.32); }
+    .play-btn small { display:block; font-size:.68rem; font-weight:600; opacity:.7; letter-spacing:.04em; }
+    .apk-btn { color:var(--accent); text-decoration:none; font-weight:600; font-size:.95rem; }
+    .apk-btn:hover { text-decoration:underline; }
+    .soon { color:var(--muted); font-size:.9rem; }
+
+    /* Sideload */
+    .dl-btn {
+      display:inline-flex; align-items:center; gap:12px; text-decoration:none;
+      background:transparent; color:var(--accent); font-weight:700;
+      border:2px solid var(--accent); padding:14px 26px; border-radius:14px; font-size:1.05rem;
+      transition:background .12s ease, color .12s ease;
+    }
+    .dl-btn:hover { background:var(--accent); color:#04121a; }
+    .dl-meta { color:var(--muted); font-size:.85rem; margin:14px 0 0; }
+    .steps { counter-reset:step; list-style:none; padding:0; margin:26px 0 0; max-width:620px; }
+    .steps li { position:relative; padding:0 0 16px 46px; color:var(--muted); }
+    .steps li::before {
+      counter-increment:step; content:counter(step);
+      position:absolute; left:0; top:-2px; width:30px; height:30px;
+      display:flex; align-items:center; justify-content:center;
+      background:var(--surface); border:1px solid var(--accent); color:var(--accent);
+      border-radius:50%; font-weight:700; font-size:.9rem;
+    }
+    .steps li strong { color:var(--text); }
+    .hash {
+      display:block; margin-top:20px; font-family:ui-monospace,Consolas,monospace;
+      font-size:.72rem; color:var(--muted); word-break:break-all;
+    }
+    .note { font-size:.85rem; color:var(--muted); margin-top:18px; border-left:2px solid var(--warm); padding-left:14px; }
+
+    /* Sections */
+    section { padding:46px 0; }
+    h2 { font-size:1.7rem; margin:0 0 8px; letter-spacing:-.02em; }
+    .section-sub { color:var(--muted); margin:0 0 30px; }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    .feature {
+      background:var(--surface); border:1px solid rgba(255,255,255,.06);
+      border-radius:16px; padding:22px 24px;
+    }
+    .feature .ic { font-size:1.6rem; line-height:1; margin-bottom:10px; }
+    .feature h3 { margin:0 0 6px; font-size:1.1rem; }
+    .feature p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* Screenshots */
+    .shots { display:flex; gap:20px; overflow-x:auto; padding:6px 2px 16px; scroll-snap-type:x mandatory; align-items:center; }
+    .shots img {
+      width:230px; flex:0 0 auto; border-radius:22px; scroll-snap-align:center;
+      border:1px solid rgba(0,229,255,.18); box-shadow:0 10px 40px rgba(0,0,0,.4);
+    }
+    .shots img.shot-land { width:480px; border-radius:16px; }
+
+    /* Privacy band */
+    .band {
+      background:var(--surface); border:1px solid rgba(255,255,255,.06);
+      border-radius:20px; padding:40px 34px; text-align:center;
+    }
+    .band h2 { margin-bottom:14px; }
+    .band p { color:var(--muted); max-width:560px; margin:0 auto; }
+
+    footer { padding:40px 0 60px; text-align:center; color:var(--muted); font-size:.86rem; }
+    .foot-links { margin-top:18px; }
+    .foot-links a { color:var(--accent); text-decoration:none; }
+    .foot-links a:hover { text-decoration:underline; }
+    .coffee {
+      display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+      background:var(--warm); color:#1a0e00; font-weight:700; font-size:.95rem;
+      padding:11px 20px; border-radius:12px;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow:0 6px 22px rgba(255,109,0,.22);
+    }
+    .coffee:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,109,0,.32); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="brand">
+          <svg width="52" height="52" viewBox="0 0 108 108" aria-hidden="true">
+            <path d="M38,72 A20,20 0 1 1 70,72" fill="none" stroke="#00e5ff" stroke-width="6" stroke-linecap="round"/>
+            <path d="M54,60 L64,46" fill="none" stroke="#ff6d00" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="54" cy="60" r="4" fill="#e6edf3"/>
+          </svg>
+          <strong style="font-size:1.15rem;letter-spacing:.02em;">OdoTrack</strong>
+        </div>
+        <h1>Your speed and<br>distance, at a glance.</h1>
+        <p class="tagline">A clean, accurate GPS speedometer and trip odometer for Android —
+          with no ads, no tracking, and no cost. Ever.</p>
+        <div class="chips">
+          <span class="chip">No ads</span>
+          <span class="chip">No tracking</span>
+          <span class="chip">No internet permission</span>
+          <span class="chip">100% free</span>
+        </div>
+        <div class="cta">
+          <!-- Live once the app is published on Google Play. -->
+          <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.spritzlive.speedometer">
+            <svg width="26" height="28" viewBox="0 0 512 512" aria-hidden="true">
+              <path fill="#04121a" d="M47 15c-6 4-9 11-9 20v442c0 9 3 16 9 20l232-241L47 15z"/>
+              <path fill="#04121a" d="M356 182l-77-45L61 8c-4-3-9-4-14-3l255 264 54-87z"/>
+              <path fill="#04121a" d="M356 330l-54-87L47 507c5 1 10 0 14-3l218-129 77-45z"/>
+              <path fill="#04121a" d="M356 182l-54 87 54 87 96-56c14-8 14-30 0-38l-96-56z"/>
+            </svg>
+            <span>Get it on<small>GOOGLE PLAY</small></span>
+          </a>
+          <a class="apk-btn" href="#sideload">Or download the APK &darr;</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <svg width="260" height="260" viewBox="0 0 260 260" aria-hidden="true">
+          <defs>
+            <linearGradient id="arc" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#00e5ff"/>
+              <stop offset="1" stop-color="#ff6d00"/>
+            </linearGradient>
+          </defs>
+          <!-- track -->
+          <path d="M62 198 A96 96 0 1 1 198 198" fill="none" stroke="#223040" stroke-width="18" stroke-linecap="round"/>
+          <!-- progress ~62% -->
+          <path d="M62 198 A96 96 0 0 1 176 55" fill="none" stroke="url(#arc)" stroke-width="18" stroke-linecap="round"/>
+          <text x="130" y="140" text-anchor="middle" font-size="58" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">0</text>
+          <text x="130" y="174" text-anchor="middle" font-size="20" font-weight="700" fill="#00e5ff" font-family="Arial, sans-serif">mph</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Everything you need, nothing you don't</h2>
+    <p class="section-sub">Just open it and go.</p>
+    <div class="features">
+      <div class="feature"><div class="ic">🚗</div><h3>Big, clear readout</h3>
+        <p>A large digital number inside a smooth analog gauge — in portrait or landscape,
+        whichever way you mount it.</p></div>
+      <div class="feature"><div class="ic">🧭</div><h3>Trip odometer</h3>
+        <p>Track how far you've travelled in miles or kilometres, and reset the trip
+        whenever you start a new journey.</p></div>
+      <div class="feature"><div class="ic">🔁</div><h3>mph or km/h</h3>
+        <p>Switch units with one tap. Your choice is remembered next time.</p></div>
+      <div class="feature"><div class="ic">📈</div><h3>Max &amp; average speed</h3>
+        <p>See your top speed and trip average alongside your distance.</p></div>
+      <div class="feature"><div class="ic">🎯</div><h3>Speed accuracy shown</h3>
+        <p>A live &ldquo;&plusmn;&rdquo; readout tells you how confident the GPS fix is, so you know
+        how much to trust the number.</p></div>
+      <div class="feature"><div class="ic">🔒</div><h3>Truly private</h3>
+        <p>No internet permission at all — your location never leaves your phone.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>See it in action</h2>
+    <p class="section-sub">Portrait and landscape.</p>
+    <div class="shots">
+      <img src="screenshot-portrait.png" alt="OdoTrack showing GPS speed, GPS accuracy, and trip distance" loading="lazy">
+      <img class="shot-land" src="screenshot-landscape.png" alt="OdoTrack in landscape with the gauge and stats side by side" loading="lazy">
+    </div>
+  </section>
+
+  <section id="sideload">
+    <h2>Try it now — sideload the APK</h2>
+    <p class="section-sub">Don't want to wait for the Play Store? Install it directly.</p>
+    <a class="dl-btn" href="https://github.com/cook1991/cook1991.github.io/releases/download/odotrack-v1.5/odotrack-1.5.apk" download>
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 3v10.6l3.3-3.3 1.4 1.4L12 17.4 6.3 11.7l1.4-1.4L11 13.6V3h1zM5 19h14v2H5z"/>
+      </svg>
+      Download for Android
+    </a>
+    <p class="dl-meta">Version 1.5 &middot; ~1 MB &middot; Android 8.0+ &middot; signed by SpritzLive</p>
+
+    <ol class="steps">
+      <li><strong>Tap Download</strong> above on your Android phone to get <code>odotrack-1.5.apk</code>.</li>
+      <li><strong>Open the file</strong> from your notifications or Downloads. Android will
+        ask permission to install from your browser — tap <strong>Settings</strong> and enable
+        <strong>&ldquo;Allow from this source.&rdquo;</strong></li>
+      <li><strong>Tap Install</strong>, then open the app and grant location access. That's it.</li>
+    </ol>
+
+    <code class="hash">SHA-256: 2c716282eb801a2b9ffdcff8683d54604a82f084d3f8b582e5bc4b40c01156af</code>
+
+    <p class="note">Heads up: this direct-install version is signed with our own key. Once
+      the app is live on Google Play, install the Play version for automatic updates — you
+      may need to uninstall this sideloaded copy first, as Play uses a different signing key.</p>
+  </section>
+
+  <section>
+    <div class="band">
+      <h2>Private by design</h2>
+      <p>OdoTrack has no ads, no analytics, no accounts, and no internet permission
+      whatsoever. Your GPS location is used only to calculate your speed and trip distance
+      on screen, in real time, on your device — it is never sent anywhere. Your trip total
+      and unit choice are saved only on your own phone.</p>
+    </div>
+  </section>
+
+  <footer>
+    <a class="coffee" href="https://buymeacoffee.com/spritzjason" target="_blank" rel="noopener">
+      ☕ Like it? Buy me a coffee
+    </a>
+    <div class="foot-links">
+      &copy; 2026 SpritzLive &middot;
+      <a href="privacy.html">Privacy Policy</a> &middot;
+      <a href="mailto:jason@spritzlive.net">jason@spritzlive.net</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyCast — Privacy Policy</title>
+<link rel="icon" type="image/png" href="img/icon.png">
+<style>
+  :root{--bg:#0A0E14;--surface:#141B26;--text:#E6EDF3;--muted:#8899AA;--track:#223040;--cyan:#00E5FF}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",Roboto,-apple-system,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+  a{color:var(--cyan);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{border-bottom:1px solid var(--track)}
+  .nav{display:flex;align-items:center;gap:10px;height:62px;font-weight:800;font-size:20px}
+  .nav img{width:32px;height:32px;border-radius:8px}
+  .nav .cast{color:var(--cyan)}
+  main{padding:44px 0 70px}
+  h1{font-size:34px;font-weight:800;margin-bottom:4px;letter-spacing:-.5px}
+  .updated{color:var(--muted);margin-bottom:26px}
+  h2{font-size:20px;margin:30px 0 8px}
+  p{margin:10px 0;color:#c7d2dd}
+  ul{margin:10px 0 10px 22px}
+  li{margin:7px 0;color:#c7d2dd}
+  strong{color:var(--text)}
+  footer{border-top:1px solid var(--track);padding:24px 0;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a href="index.html" style="display:flex;align-items:center;gap:10px;color:inherit"><img src="img/icon.png" alt="">Sky<span class="cast">Cast</span></a></div></header>
+<main class="wrap">
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: 12 July 2026</div>
+
+  <p>SkyCast ("the app") is a free weather app. It has <strong>no user accounts, no ads, and no analytics or tracking</strong>. This policy explains the little data the app touches and where it goes.</p>
+
+  <h2>What the app collects</h2>
+  <ul>
+    <li><strong>Approximate location — only when you ask for it.</strong> If you tap "Use my location," the app reads your device's <em>approximate</em> (coarse) location once to look up local weather. The app does not request precise GPS location and does not track your location in the background.</li>
+    <li><strong>City searches you type.</strong> When you search for a city, the text you enter is sent to the weather provider's geocoding service to find matching places.</li>
+  </ul>
+  <p>The app does <strong>not</strong> collect your name, email, contacts, device identifiers, or any advertising ID.</p>
+
+  <h2>How your location is used, and who receives it</h2>
+  <p>To turn a location into a forecast, coordinates are sent to third-party services. We do not operate any servers of our own and store nothing about you remotely:</p>
+  <ul>
+    <li><strong>Open-Meteo</strong> (open-meteo.com) — receives coordinates (or a searched city name) to return the weather forecast.</li>
+    <li><strong>Your device's system geocoder</strong> (provided by the device / Google Play Services) — used first to turn coordinates into a city name.</li>
+    <li><strong>BigDataCloud</strong> (bigdatacloud.com) — used only as a fallback when the device geocoder is unavailable, to turn coordinates into a city name.</li>
+    <li><strong>RainViewer</strong> (rainviewer.com) — provides the precipitation-radar imagery. The app requests radar map tiles for the area shown on the radar map (centered on your location), so the map region you view is sent to RainViewer.</li>
+    <li><strong>MapTiler</strong> (maptiler.com) — provides the base map tiles beneath the radar (map data © OpenStreetMap). As with any map, the tiles for the area you view are requested from MapTiler's servers.</li>
+  </ul>
+  <p>Location is used solely to provide weather information. It is <strong>never</strong> sold, and <strong>never</strong> used for advertising or profiling.</p>
+
+  <h2>What is stored, and where</h2>
+  <p>The app saves two things <strong>locally on your device only</strong>: your last-viewed location and your temperature-unit preference (°C/°F). This never leaves the device and is removed if you uninstall the app or clear its data.</p>
+
+  <h2>Children</h2>
+  <p>The app is suitable for all ages and collects no personal information.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the "Last updated" date above will change accordingly.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:jason@spritzlive.net">jason@spritzlive.net</a></p>
+</main>
+<footer><div class="wrap"><a href="index.html">← Back to SkyCast</a></div></footer>
+</body>
+</html>
