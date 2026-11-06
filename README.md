@@ -13,4 +13,5 @@ python scripts/publish.py <app>
 ```
 
 It builds the signed APK, refuses one with the wrong package or signing key, creates the
-release, updates the app's page, and pushes. Add `--dry-run` to check without publishing.
+release, updates the app's page and `store.json`, and pushes. Add `--dry-run` to check
+without publishing. SpritzStore reads `store.json`, so it picks up new versions by itself.

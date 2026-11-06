@@ -1,0 +1,39 @@
+{
+  "apps": {
+    "authvault": {
+      "sha256": "0d43e84e10e8296431174f82add4775a753cf883fa8d83ae42b463c62f269526",
+      "size": 17731299,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/authvault-v1.2/AuthVault-v1.2.apk",
+      "versionCode": 3,
+      "versionName": "1.2"
+    },
+    "drb": {
+      "sha256": "19b8793378e0120c0f41866852e00b61d6d943d3a4f5d93f240654e85ff38bf9",
+      "size": 8047272,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/drb-v1.4/douay-rheims-bible-v1.4.apk",
+      "versionCode": 5,
+      "versionName": "1.4"
+    },
+    "messages": {
+      "sha256": "f53ab56930abe2402eb581197bb6313e91ab6168c5fe28d7782e2b160070543f",
+      "size": 14488130,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/messages-v1.12/SpritzLive-Messages-1.12.apk",
+      "versionCode": 13,
+      "versionName": "1.12"
+    },
+    "odotrack": {
+      "sha256": "2c716282eb801a2b9ffdcff8683d54604a82f084d3f8b582e5bc4b40c01156af",
+      "size": 1106638,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/odotrack-v1.5/odotrack-1.5.apk",
+      "versionCode": 15,
+      "versionName": "1.5"
+    },
+    "skycast": {
+      "sha256": "d87957fd6d91f3127304c08cf12d7d0f591ed39fcdb0f57a6e972a01dbcc8567",
+      "size": 1621160,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/skycast-v1.2/SkyCast-v1.2.apk",
+      "versionCode": 3,
+      "versionName": "1.2"
+    }
+  }
+}

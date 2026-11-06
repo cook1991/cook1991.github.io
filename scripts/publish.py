@@ -4,15 +4,17 @@
     python scripts/publish.py <app> [--apk FILE] [--dry-run]
 
 Builds the app's signed release APK from its source repo, checks it, attaches it to
-a new release tagged <app>-v<version>, updates the app's page, and pushes. Bump
-versionCode and versionName in the source repo first; the version comes from the APK.
+a new release tagged <app>-v<version>, updates the app's page and store.json, and
+pushes. Bump versionCode and versionName in the source repo first; the version comes
+from the APK.
 
-SpritzStore picks up the new release on its own. --apk skips the build and uses an
-existing file. --dry-run does the checks and reports the page changes without
-publishing anything.
+SpritzStore reads store.json, so it picks up the new version on its own. --apk skips
+the build and uses an existing file. --dry-run does the checks and reports the page
+changes without publishing anything.
 """
 import argparse
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -30,8 +32,24 @@ SDK = Path(os.environ.get("ANDROID_HOME") or Path(os.environ["LOCALAPPDATA"]) / 
 
 # `signer` pins each app's certificate: a release signed with anything else couldn't
 # update existing installs, so it must never go out. `page` holds the text on each
-# app's page that tracks the release, as (pattern, replacement) pairs.
+# app's page that tracks the release, as (pattern, replacement) pairs. Apps with no
+# `page` are installed through SpritzStore only.
 APPS = {
+    "spritzstore": dict(
+        source="spritzstore", package="net.spritzlive.spritzstore",
+        signer="8988fb4882e9300014f2bb0971f3c78fa61208abdbd29fa18e438b45e7c36141",
+        apk="SpritzStore-{version}.apk",
+    ),
+    "identifysong": dict(
+        source="identifysongapp", package="net.spritzlive.identifysong",
+        signer="304145a77ef397452b27a64426b214488cf0b5cd0bb3ed5393f545e806a513f7",
+        apk="IdentifySong-{version}.apk",
+    ),
+    "securemessenger": dict(
+        source="securemessenger", package="net.spritzlive.securemessenger",
+        signer="bfb3c0ccd636a7f7d5a1a8240ec96999f8a707fe794e61d8d089aff941466dfd",
+        apk="SecureMessenger-{version}.apk",
+    ),
     "messages": dict(
         source="smsmmsapp", package="net.spritzlive.smsmms",
         signer="7ebff1da4059ae4f82cff427b9d1859064dc98bda113dadaca31925754b160dd",
@@ -103,9 +121,9 @@ def build_apk(source):
 
 
 def check_apk(apk, app):
-    """Returns the APK's version name after refusing anything unsafe to publish."""
+    """Returns the APK's version name and code after refusing anything unsafe to publish."""
     badging = run(build_tool("aapt2"), "dump", "badging", str(apk))
-    package = re.search(r"package: name='([^']+)'.*?versionName='([^']+)'", badging)
+    package = re.search(r"package: name='([^']+)' versionCode='(\d+)' versionName='([^']+)'", badging)
     if not package:
         fail(f"couldn't read the package info from {apk}")
     if package[1] != app["package"]:
@@ -121,7 +139,7 @@ def check_apk(apk, app):
             hit = CREDENTIALS.search(contents.read(name))
             if hit:
                 fail(f"{name} in {apk} contains what looks like a credential ({hit[0][:6].decode(errors='replace')}...)")
-    return package[2]
+    return package[3], int(package[2])
 
 
 def update_page(html, slug, app, version, tag, filename, sha, mb):
@@ -154,7 +172,7 @@ def main():
         run("git", "pull", "--ff-only", "--quiet", cwd=SITE)
 
     apk = args.apk or build_apk(source)
-    version = check_apk(apk, app)
+    version, version_code = check_apk(apk, app)
     tag = f"{slug}-v{version}"
     filename = app["apk"].format(version=version)
     data = apk.read_bytes()
@@ -165,14 +183,22 @@ def main():
     if exists and not args.dry_run:
         fail(f"{tag} is already published -- bump the version in {source}")
 
+    manifest_path = SITE / "store.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    current = manifest["apps"].get(slug)
+    if current and version_code <= current["versionCode"] and not args.dry_run:
+        fail(f"versionCode {version_code} isn't newer than the store's {current['versionCode']}")
+
     page = SITE / slug / "index.html"
-    with open(page, encoding="utf-8", newline="") as f:
-        before = f.read()
-    after = update_page(before, slug, app, version, tag, filename, sha, mb)
+    before = after = None
+    if "page" in app:
+        with open(page, encoding="utf-8", newline="") as f:
+            before = f.read()
+        after = update_page(before, slug, app, version, tag, filename, sha, mb)
 
     print(f"{tag}: {filename}, {mb} MB, sha256 {sha}")
     if args.dry_run:
-        changed = sum(a != b for a, b in zip(before.splitlines(), after.splitlines()))
+        changed = sum(a != b for a, b in zip(before.splitlines(), after.splitlines())) if before else 0
         print(f"Dry run: {changed} page line(s) would change. Nothing published.")
         return
 
@@ -183,12 +209,22 @@ def main():
         run("gh", "release", "create", tag, str(named), "-R", REPO,
             "--title", f"{slug} {version}", "--notes", f"{slug} for Android, version {version}.")
 
-    with open(page, "w", encoding="utf-8", newline="") as f:
-        f.write(after)
-    run("git", "add", str(page), cwd=SITE)
+    manifest["apps"][slug] = {
+        "versionCode": version_code,
+        "versionName": version,
+        "url": f"https://github.com/{REPO}/releases/download/{tag}/{filename}",
+        "size": len(data),
+        "sha256": sha,
+    }
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    run("git", "add", str(manifest_path), cwd=SITE)
+    if after is not None:
+        with open(page, "w", encoding="utf-8", newline="") as f:
+            f.write(after)
+        run("git", "add", str(page), cwd=SITE)
     run("git", "commit", "--quiet", "-m", f"Publish {slug} {version}", cwd=SITE)
     run("git", "push", "--quiet", "origin", "main", cwd=SITE)
-    print(f"Published. Live shortly at https://cook1991.github.io/{slug}/")
+    print(f"Published {tag}. SpritzStore and the site update within a few minutes.")
 
 
 if __name__ == "__main__":
