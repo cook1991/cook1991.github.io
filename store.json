@@ -35,6 +35,13 @@
       "versionCode": 15,
       "versionName": "1.5"
     },
+    "securemessenger": {
+      "sha256": "73cb6932b977be2037ff56039f7c7df32bd864e04ed8f552ffca781e7e3b4846",
+      "size": 90687732,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/securemessenger-v0.2/SecureMessenger-0.2.apk",
+      "versionCode": 2,
+      "versionName": "0.2"
+    },
     "skycast": {
       "sha256": "d87957fd6d91f3127304c08cf12d7d0f591ed39fcdb0f57a6e972a01dbcc8567",
       "size": 1621160,
