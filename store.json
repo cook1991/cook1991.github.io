@@ -14,6 +14,13 @@
       "versionCode": 5,
       "versionName": "1.4"
     },
+    "identifysong": {
+      "sha256": "df2c5d70342be74412f5a05007ef4156ed023d33eba242780e806470658fa8e6",
+      "size": 15479174,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/identifysong-v1.1/IdentifySong-1.1.apk",
+      "versionCode": 2,
+      "versionName": "1.1"
+    },
     "messages": {
       "sha256": "f53ab56930abe2402eb581197bb6313e91ab6168c5fe28d7782e2b160070543f",
       "size": 14488130,
