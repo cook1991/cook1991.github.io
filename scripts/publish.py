@@ -50,6 +50,11 @@ APPS = {
         signer="bfb3c0ccd636a7f7d5a1a8240ec96999f8a707fe794e61d8d089aff941466dfd",
         apk="SecureMessenger-{version}.apk",
     ),
+    "mobilebrowser": dict(
+        source="mobilebrowser", package="net.spritzlive.mobilebrowser",
+        signer="489859355fdea0f85bd86383fce3019414f232d0c9ea930771f0d0d7c6ce0284",
+        apk="MobileBrowser-{version}.apk",
+    ),
     "policescanner": dict(
         source="policescanner", package="net.inetvisions.policescanner",
         signer="be1d998b1000c6ce84e1aa8a7e5019c39bdf33360b7f2d14b3a2dc29fdaf49ff",
