@@ -7,6 +7,13 @@
       "versionCode": 3,
       "versionName": "1.2"
     },
+    "compass": {
+      "sha256": "031a51dec7669d9021d395cb2bccd38631bde846341317cbabe30cb724e6ae02",
+      "size": 915196,
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/compass-v1.3/TrueNorth-1.3.apk",
+      "versionCode": 4,
+      "versionName": "1.3"
+    },
     "drb": {
       "sha256": "19b8793378e0120c0f41866852e00b61d6d943d3a4f5d93f240654e85ff38bf9",
       "size": 8047272,
