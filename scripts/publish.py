@@ -35,13 +35,13 @@ DOWNLOAD_LINE = [(r"Version [\d.]+ (&middot; Android [\d.]+\+ &middot; ~)\d+(&nb
 
 # `signer` pins each app's certificate: a release signed with anything else couldn't
 # update existing installs, so it must never go out. `page` holds the text on each
-# app's page that tracks the release, as (pattern, replacement) pairs. Apps with no
-# `page` are installed through SpritzStore only.
+# app's page that tracks the release, as (pattern, replacement) pairs.
 APPS = {
     "spritzstore": dict(
         source="spritzstore", package="net.spritzlive.spritzstore",
         signer="8988fb4882e9300014f2bb0971f3c78fa61208abdbd29fa18e438b45e7c36141",
-        apk="SpritzStore-{version}.apk",
+        apk="SpritzStore-{version}.apk", apk_pattern=r"SpritzStore-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "identifysong": dict(
         source="identifysongapp", package="net.spritzlive.identifysong",
