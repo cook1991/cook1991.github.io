@@ -30,6 +30,9 @@ REPO = "cook1991/cook1991.github.io"
 JBR = "C:/Program Files/Android/Android Studio/jbr"
 SDK = Path(os.environ.get("ANDROID_HOME") or Path(os.environ["LOCALAPPDATA"]) / "Android/Sdk")
 
+# The version line under the download button on pages laid out like the messages page.
+DOWNLOAD_LINE = [(r"Version [\d.]+ (&middot; Android [\d.]+\+ &middot; ~)\d+(&nbsp;MB)", r"Version {version} \g<1>{mb}\g<2>")]
+
 # `signer` pins each app's certificate: a release signed with anything else couldn't
 # update existing installs, so it must never go out. `page` holds the text on each
 # app's page that tracks the release, as (pattern, replacement) pairs. Apps with no
@@ -43,33 +46,38 @@ APPS = {
     "identifysong": dict(
         source="identifysongapp", package="net.spritzlive.identifysong",
         signer="304145a77ef397452b27a64426b214488cf0b5cd0bb3ed5393f545e806a513f7",
-        apk="IdentifySong-{version}.apk",
+        apk="IdentifySong-{version}.apk", apk_pattern=r"IdentifySong-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "securemessenger": dict(
         source="securemessenger", package="net.spritzlive.securemessenger",
         signer="bfb3c0ccd636a7f7d5a1a8240ec96999f8a707fe794e61d8d089aff941466dfd",
-        apk="SecureMessenger-{version}.apk",
+        apk="SecureMessenger-{version}.apk", apk_pattern=r"SecureMessenger-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "mobilebrowser": dict(
         source="mobilebrowser", package="net.spritzlive.mobilebrowser",
         signer="489859355fdea0f85bd86383fce3019414f232d0c9ea930771f0d0d7c6ce0284",
-        apk="MobileBrowser-{version}.apk",
+        apk="MobileBrowser-{version}.apk", apk_pattern=r"MobileBrowser-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "policescanner": dict(
         source="policescanner", package="net.inetvisions.policescanner",
         signer="be1d998b1000c6ce84e1aa8a7e5019c39bdf33360b7f2d14b3a2dc29fdaf49ff",
-        apk="PoliceScanner-{version}.apk",
+        apk="PoliceScanner-{version}.apk", apk_pattern=r"PoliceScanner-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "compass": dict(
         source="compassapp", package="com.spritzlive.compass",
         signer="239372a5a027c5e5e7b752caee6e23e1c5eef81f745e3dbef4a248b9fd5cca60",
-        apk="TrueNorth-{version}.apk",
+        apk="TrueNorth-{version}.apk", apk_pattern=r"TrueNorth-[\d.]+\.apk",
+        page=DOWNLOAD_LINE,
     ),
     "messages": dict(
         source="smsmmsapp", package="net.spritzlive.smsmms",
         signer="7ebff1da4059ae4f82cff427b9d1859064dc98bda113dadaca31925754b160dd",
         apk="SpritzLive-Messages-{version}.apk", apk_pattern=r"SpritzLive-Messages-[\d.]+\.apk",
-        page=[(r"Version [\d.]+ (&middot; Android [\d.]+\+ &middot; ~)\d+(&nbsp;MB)", r"Version {version} \g<1>{mb}\g<2>")],
+        page=DOWNLOAD_LINE,
     ),
     "authvault": dict(
         source="authapp", package="net.spritzlive.authvault",

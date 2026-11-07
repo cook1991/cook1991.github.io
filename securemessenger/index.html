@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#136f5f">
+<title>Secure Messenger — Download</title>
+<meta name="description" content="Secure Messenger is an invite-only, end-to-end encrypted messenger for Android. It only works for people set up on its relay.">
+<meta property="og:title" content="Secure Messenger">
+<meta property="og:description" content="Private, end-to-end encrypted messaging for an invited pair of phones.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --accent:#136f5f; --accent-d:#0e5549; --ink:#0e1520; --muted:#5b6675;
+    --bg:#f4f7fb; --card:#ffffff; --line:#e3e9f1; --ok:#1f9d55;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5;
+    -webkit-font-smoothing:antialiased; padding:24px 16px 60px;
+  }
+  .wrap{max-width:560px;margin:0 auto}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:20px;
+    padding:28px 24px; box-shadow:0 8px 30px rgba(16,32,64,.06); margin-bottom:20px;
+  }
+  .hero{text-align:center}
+  .logo{
+    width:88px;height:88px;border-radius:22px;display:inline-block;overflow:hidden;
+    background:#123C35; box-shadow:0 10px 24px rgba(16,32,64,.25); margin-bottom:14px;
+  }
+  .logo svg,.logo img{display:block;width:100%;height:100%}
+  h1{font-size:1.7rem;margin:.2rem 0 .1rem;letter-spacing:-.02em}
+  .tag{color:var(--muted);margin:0 0 4px;font-size:1.02rem}
+  .meta{color:var(--muted);font-size:.85rem;margin-top:10px}
+  .dl{
+    display:block;width:100%;text-align:center;text-decoration:none;
+    background:var(--accent); color:#fff; font-weight:700; font-size:1.15rem;
+    padding:16px 20px; border-radius:14px; margin-top:20px;
+    box-shadow:0 6px 16px rgba(16,32,64,.25); transition:background .15s,transform .05s;
+  }
+  .dl:hover{background:var(--accent-d)}
+  .dl:active{transform:translateY(1px)}
+  .dl small{display:block;font-weight:500;font-size:.8rem;opacity:.9;margin-top:2px}
+  .qr{text-align:center}
+  .qr svg{width:200px;height:200px;background:#fff;border-radius:12px;border:1px solid var(--line);padding:8px}
+  .qr p{color:var(--muted);font-size:.9rem;margin:.6rem 0 0}
+  h2{font-size:1.05rem;margin:0 0 14px;letter-spacing:-.01em}
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  ol.steps li{
+    counter-increment:s;position:relative;padding:0 0 14px 44px;
+  }
+  ol.steps li:last-child{padding-bottom:0}
+  ol.steps li::before{
+    content:counter(s);position:absolute;left:0;top:-1px;width:30px;height:30px;
+    background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:.95rem;
+  }
+  .feat{display:grid;grid-template-columns:1fr;gap:12px;margin:0;padding:0;list-style:none}
+  .feat li{display:flex;gap:12px;align-items:flex-start}
+  .feat .ic{flex:0 0 auto;width:26px;height:26px;color:var(--ok)}
+  .note{background:#fff7e6;border:1px solid #ffe0a3;border-radius:12px;padding:14px 16px;color:#7a5a00;font-size:.92rem;margin:0}
+  .plain{margin:0}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
+  footer a{color:var(--accent);text-decoration:none}
+  code{background:#eef2f8;padding:1px 6px;border-radius:6px;font-size:.9em;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card hero">
+    <div class="logo" aria-hidden="true"><svg viewBox="18 18 72 72" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M40,52 L40,42 A14,14 0 0 1 68,42 L68,52" stroke="#EAF7F1" stroke-width="7" stroke-linecap="round"/><path fill="#EAF7F1" d="M34,52h40a6,6 0 0 1 6,6v20a6,6 0 0 1 -6,6H34a6,6 0 0 1 -6,-6V58a6,6 0 0 1 6,-6z"/><path fill="#123C35" d="M54,62m-4,0a4,4 0 1 0 8,0a4,4 0 1 0 -8,0"/><path fill="#123C35" d="M52,65h4l2,10h-8z"/></svg></div>
+    <h1>Secure Messenger</h1>
+    <p class="tag">Private, end-to-end encrypted messaging for an invited pair of phones.</p>
+    <a class="dl" href="https://github.com/cook1991/cook1991.github.io/releases/download/securemessenger-v0.2/SecureMessenger-0.2.apk" download>
+      Download for Android
+      <small>Version 0.2 &middot; Android 8.0+ &middot; ~91&nbsp;MB</small>
+    </a>
+    <p class="meta">Tap the button on your Android phone, then open the downloaded file to install.</p>
+  </div>
+
+  <div class="card qr">
+    <h2>Installing on a different phone?</h2>
+    <svg viewBox="0 0 37 37" role="img" aria-label="QR code linking to this download page" xmlns="http://www.w3.org/2000/svg"><path d="M2,2H3V3H2zM3,2H4V3H3zM4,2H5V3H4zM5,2H6V3H5zM6,2H7V3H6zM7,2H8V3H7zM8,2H9V3H8zM13,2H14V3H13zM15,2H16V3H15zM18,2H19V3H18zM19,2H20V3H19zM21,2H22V3H21zM22,2H23V3H22zM24,2H25V3H24zM25,2H26V3H25zM26,2H27V3H26zM28,2H29V3H28zM29,2H30V3H29zM30,2H31V3H30zM31,2H32V3H31zM32,2H33V3H32zM33,2H34V3H33zM34,2H35V3H34zM2,3H3V4H2zM8,3H9V4H8zM11,3H12V4H11zM12,3H13V4H12zM13,3H14V4H13zM15,3H16V4H15zM16,3H17V4H16zM17,3H18V4H17zM18,3H19V4H18zM19,3H20V4H19zM24,3H25V4H24zM28,3H29V4H28zM34,3H35V4H34zM2,4H3V5H2zM4,4H5V5H4zM5,4H6V5H5zM6,4H7V5H6zM8,4H9V5H8zM10,4H11V5H10zM12,4H13V5H12zM14,4H15V5H14zM15,4H16V5H15zM17,4H18V5H17zM18,4H19V5H18zM19,4H20V5H19zM20,4H21V5H20zM26,4H27V5H26zM28,4H29V5H28zM30,4H31V5H30zM31,4H32V5H31zM32,4H33V5H32zM34,4H35V5H34zM2,5H3V6H2zM4,5H5V6H4zM5,5H6V6H5zM6,5H7V6H6zM8,5H9V6H8zM10,5H11V6H10zM11,5H12V6H11zM16,5H17V6H16zM17,5H18V6H17zM18,5H19V6H18zM21,5H22V6H21zM22,5H23V6H22zM23,5H24V6H23zM24,5H25V6H24zM26,5H27V6H26zM28,5H29V6H28zM30,5H31V6H30zM31,5H32V6H31zM32,5H33V6H32zM34,5H35V6H34zM2,6H3V7H2zM4,6H5V7H4zM5,6H6V7H5zM6,6H7V7H6zM8,6H9V7H8zM10,6H11V7H10zM12,6H13V7H12zM13,6H14V7H13zM17,6H18V7H17zM20,6H21V7H20zM26,6H27V7H26zM28,6H29V7H28zM30,6H31V7H30zM31,6H32V7H31zM32,6H33V7H32zM34,6H35V7H34zM2,7H3V8H2zM8,7H9V8H8zM10,7H11V8H10zM11,7H12V8H11zM13,7H14V8H13zM15,7H16V8H15zM17,7H18V8H17zM18,7H19V8H18zM22,7H23V8H22zM23,7H24V8H23zM26,7H27V8H26zM28,7H29V8H28zM34,7H35V8H34zM2,8H3V9H2zM3,8H4V9H3zM4,8H5V9H4zM5,8H6V9H5zM6,8H7V9H6zM7,8H8V9H7zM8,8H9V9H8zM10,8H11V9H10zM12,8H13V9H12zM14,8H15V9H14zM16,8H17V9H16zM18,8H19V9H18zM20,8H21V9H20zM22,8H23V9H22zM24,8H25V9H24zM26,8H27V9H26zM28,8H29V9H28zM29,8H30V9H29zM30,8H31V9H30zM31,8H32V9H31zM32,8H33V9H32zM33,8H34V9H33zM34,8H35V9H34zM10,9H11V10H10zM14,9H15V10H14zM16,9H17V10H16zM17,9H18V10H17zM23,9H24V10H23zM24,9H25V10H24zM26,9H27V10H26zM2,10H3V11H2zM4,10H5V11H4zM5,10H6V11H5zM6,10H7V11H6zM7,10H8V11H7zM8,10H9V11H8zM11,10H12V11H11zM13,10H14V11H13zM14,10H15V11H14zM15,10H16V11H15zM16,10H17V11H16zM17,10H18V11H17zM19,10H20V11H19zM28,10H29V11H28zM29,10H30V11H29zM30,10H31V11H30zM31,10H32V11H31zM32,10H33V11H32zM2,11H3V12H2zM6,11H7V12H6zM9,11H10V12H9zM10,11H11V12H10zM11,11H12V12H11zM12,11H13V12H12zM13,11H14V12H13zM14,11H15V12H14zM16,11H17V12H16zM18,11H19V12H18zM20,11H21V12H20zM21,11H22V12H21zM22,11H23V12H22zM23,11H24V12H23zM24,11H25V12H24zM25,11H26V12H25zM26,11H27V12H26zM28,11H29V12H28zM29,11H30V12H29zM31,11H32V12H31zM32,11H33V12H32zM34,11H35V12H34zM2,12H3V13H2zM6,12H7V13H6zM8,12H9V13H8zM12,12H13V13H12zM17,12H18V13H17zM18,12H19V13H18zM20,12H21V13H20zM23,12H24V13H23zM27,12H28V13H27zM28,12H29V13H28zM30,12H31V13H30zM32,12H33V13H32zM33,12H34V13H33zM2,13H3V14H2zM6,13H7V14H6zM10,13H11V14H10zM12,13H13V14H12zM14,13H15V14H14zM16,13H17V14H16zM22,13H23V14H22zM23,13H24V14H23zM24,13H25V14H24zM25,13H26V14H25zM26,13H27V14H26zM28,13H29V14H28zM30,13H31V14H30zM31,13H32V14H31zM32,13H33V14H32zM33,13H34V14H33zM3,14H4V15H3zM5,14H6V15H5zM7,14H8V15H7zM8,14H9V15H8zM12,14H13V15H12zM13,14H14V15H13zM17,14H18V15H17zM20,14H21V15H20zM23,14H24V15H23zM25,14H26V15H25zM26,14H27V15H26zM27,14H28V15H27zM29,14H30V15H29zM30,14H31V15H30zM31,14H32V15H31zM33,14H34V15H33zM4,15H5V16H4zM5,15H6V16H5zM6,15H7V16H6zM7,15H8V16H7zM9,15H10V16H9zM10,15H11V16H10zM11,15H12V16H11zM12,15H13V16H12zM13,15H14V16H13zM14,15H15V16H14zM15,15H16V16H15zM16,15H17V16H16zM17,15H18V16H17zM18,15H19V16H18zM22,15H23V16H22zM24,15H25V16H24zM26,15H27V16H26zM28,15H29V16H28zM31,15H32V16H31zM33,15H34V16H33zM34,15H35V16H34zM3,16H4V17H3zM4,16H5V17H4zM7,16H8V17H7zM8,16H9V17H8zM9,16H10V17H9zM11,16H12V17H11zM13,16H14V17H13zM14,16H15V17H14zM15,16H16V17H15zM16,16H17V17H16zM19,16H20V17H19zM20,16H21V17H20zM21,16H22V17H21zM23,16H24V17H23zM27,16H28V17H27zM28,16H29V17H28zM31,16H32V17H31zM32,16H33V17H32zM33,16H34V17H33zM7,17H8V18H7zM9,17H10V18H9zM10,17H11V18H10zM12,17H13V18H12zM13,17H14V18H13zM16,17H17V18H16zM18,17H19V18H18zM20,17H21V18H20zM21,17H22V18H21zM22,17H23V18H22zM23,17H24V18H23zM24,17H25V18H24zM25,17H26V18H25zM27,17H28V18H27zM28,17H29V18H28zM31,17H32V18H31zM32,17H33V18H32zM2,18H3V19H2zM4,18H5V19H4zM5,18H6V19H5zM6,18H7V19H6zM7,18H8V19H7zM8,18H9V19H8zM10,18H11V19H10zM11,18H12V19H11zM15,18H16V19H15zM18,18H19V19H18zM19,18H20V19H19zM20,18H21V19H20zM21,18H22V19H21zM22,18H23V19H22zM25,18H26V19H25zM26,18H27V19H26zM27,18H28V19H27zM29,18H30V19H29zM30,18H31V19H30zM34,18H35V19H34zM2,19H3V20H2zM6,19H7V20H6zM7,19H8V20H7zM9,19H10V20H9zM10,19H11V20H10zM11,19H12V20H11zM12,19H13V20H12zM13,19H14V20H13zM16,19H17V20H16zM18,19H19V20H18zM19,19H20V20H19zM20,19H21V20H20zM21,19H22V20H21zM22,19H23V20H22zM24,19H25V20H24zM25,19H26V20H25zM28,19H29V20H28zM29,19H30V20H29zM31,19H32V20H31zM32,19H33V20H32zM34,19H35V20H34zM2,20H3V21H2zM4,20H5V21H4zM5,20H6V21H5zM7,20H8V21H7zM8,20H9V21H8zM9,20H10V21H9zM11,20H12V21H11zM13,20H14V21H13zM15,20H16V21H15zM16,20H17V21H16zM17,20H18V21H17zM18,20H19V21H18zM19,20H20V21H19zM22,20H23V21H22zM24,20H25V21H24zM27,20H28V21H27zM29,20H30V21H29zM30,20H31V21H30zM32,20H33V21H32zM33,20H34V21H33zM2,21H3V22H2zM5,21H6V22H5zM7,21H8V22H7zM9,21H10V22H9zM10,21H11V22H10zM11,21H12V22H11zM13,21H14V22H13zM15,21H16V22H15zM16,21H17V22H16zM18,21H19V22H18zM19,21H20V22H19zM20,21H21V22H20zM25,21H26V22H25zM27,21H28V22H27zM28,21H29V22H28zM29,21H30V22H29zM30,21H31V22H30zM31,21H32V22H31zM32,21H33V22H32zM34,21H35V22H34zM3,22H4V23H3zM4,22H5V23H4zM7,22H8V23H7zM8,22H9V23H8zM11,22H12V23H11zM13,22H14V23H13zM15,22H16V23H15zM16,22H17V23H16zM18,22H19V23H18zM21,22H22V23H21zM22,22H23V23H22zM23,22H24V23H23zM24,22H25V23H24zM25,22H26V23H25zM26,22H27V23H26zM27,22H28V23H27zM29,22H30V23H29zM30,22H31V23H30zM31,22H32V23H31zM2,23H3V24H2zM3,23H4V24H3zM4,23H5V24H4zM7,23H8V24H7zM9,23H10V24H9zM11,23H12V24H11zM13,23H14V24H13zM14,23H15V24H14zM17,23H18V24H17zM19,23H20V24H19zM20,23H21V24H20zM23,23H24V24H23zM25,23H26V24H25zM26,23H27V24H26zM28,23H29V24H28zM31,23H32V24H31zM32,23H33V24H32zM34,23H35V24H34zM2,24H3V25H2zM5,24H6V25H5zM6,24H7V25H6zM8,24H9V25H8zM9,24H10V25H9zM16,24H17V25H16zM17,24H18V25H17zM18,24H19V25H18zM19,24H20V25H19zM22,24H23V25H22zM23,24H24V25H23zM26,24H27V25H26zM30,24H31V25H30zM31,24H32V25H31zM32,24H33V25H32zM33,24H34V25H33zM2,25H3V26H2zM4,25H5V26H4zM6,25H7V26H6zM9,25H10V26H9zM12,25H13V26H12zM14,25H15V26H14zM15,25H16V26H15zM16,25H17V26H16zM17,25H18V26H17zM20,25H21V26H20zM23,25H24V26H23zM24,25H25V26H24zM25,25H26V26H25zM26,25H27V26H26zM27,25H28V26H27zM28,25H29V26H28zM29,25H30V26H29zM31,25H32V26H31zM32,25H33V26H32zM33,25H34V26H33zM34,25H35V26H34zM2,26H3V27H2zM4,26H5V27H4zM5,26H6V27H5zM7,26H8V27H7zM8,26H9V27H8zM9,26H10V27H9zM10,26H11V27H10zM12,26H13V27H12zM14,26H15V27H14zM15,26H16V27H15zM17,26H18V27H17zM19,26H20V27H19zM26,26H27V27H26zM27,26H28V27H27zM28,26H29V27H28zM29,26H30V27H29zM30,26H31V27H30zM31,26H32V27H31zM34,26H35V27H34zM10,27H11V28H10zM14,27H15V28H14zM20,27H21V28H20zM21,27H22V28H21zM22,27H23V28H22zM23,27H24V28H23zM26,27H27V28H26zM30,27H31V28H30zM32,27H33V28H32zM33,27H34V28H33zM34,27H35V28H34zM2,28H3V29H2zM3,28H4V29H3zM4,28H5V29H4zM5,28H6V29H5zM6,28H7V29H6zM7,28H8V29H7zM8,28H9V29H8zM11,28H12V29H11zM13,28H14V29H13zM14,28H15V29H14zM17,28H18V29H17zM18,28H19V29H18zM20,28H21V29H20zM22,28H23V29H22zM23,28H24V29H23zM25,28H26V29H25zM26,28H27V29H26zM28,28H29V29H28zM30,28H31V29H30zM32,28H33V29H32zM33,28H34V29H33zM2,29H3V30H2zM8,29H9V30H8zM10,29H11V30H10zM11,29H12V30H11zM14,29H15V30H14zM15,29H16V30H15zM16,29H17V30H16zM18,29H19V30H18zM21,29H22V30H21zM22,29H23V30H22zM23,29H24V30H23zM24,29H25V30H24zM25,29H26V30H25zM26,29H27V30H26zM30,29H31V30H30zM31,29H32V30H31zM32,29H33V30H32zM33,29H34V30H33zM2,30H3V31H2zM4,30H5V31H4zM5,30H6V31H5zM6,30H7V31H6zM8,30H9V31H8zM10,30H11V31H10zM11,30H12V31H11zM13,30H14V31H13zM14,30H15V31H14zM20,30H21V31H20zM23,30H24V31H23zM26,30H27V31H26zM27,30H28V31H27zM28,30H29V31H28zM29,30H30V31H29zM30,30H31V31H30zM31,30H32V31H31zM33,30H34V31H33zM2,31H3V32H2zM4,31H5V32H4zM5,31H6V32H5zM6,31H7V32H6zM8,31H9V32H8zM10,31H11V32H10zM11,31H12V32H11zM12,31H13V32H12zM13,31H14V32H13zM15,31H16V32H15zM16,31H17V32H16zM17,31H18V32H17zM18,31H19V32H18zM19,31H20V32H19zM22,31H23V32H22zM24,31H25V32H24zM25,31H26V32H25zM27,31H28V32H27zM30,31H31V32H30zM32,31H33V32H32zM34,31H35V32H34zM2,32H3V33H2zM4,32H5V33H4zM5,32H6V33H5zM6,32H7V33H6zM8,32H9V33H8zM10,32H11V33H10zM11,32H12V33H11zM12,32H13V33H12zM13,32H14V33H13zM15,32H16V33H15zM20,32H21V33H20zM21,32H22V33H21zM24,32H25V33H24zM25,32H26V33H25zM28,32H29V33H28zM29,32H30V33H29zM31,32H32V33H31zM2,33H3V34H2zM8,33H9V34H8zM11,33H12V34H11zM13,33H14V34H13zM14,33H15V34H14zM15,33H16V34H15zM18,33H19V34H18zM21,33H22V34H21zM22,33H23V34H22zM23,33H24V34H23zM25,33H26V34H25zM27,33H28V34H27zM30,33H31V34H30zM31,33H32V34H31zM32,33H33V34H32zM2,34H3V35H2zM3,34H4V35H3zM4,34H5V35H4zM5,34H6V35H5zM6,34H7V35H6zM7,34H8V35H7zM8,34H9V35H8zM10,34H11V35H10zM14,34H15V35H14zM19,34H20V35H19zM21,34H22V35H21zM24,34H25V35H24zM25,34H26V35H25zM26,34H27V35H26zM27,34H28V35H27zM29,34H30V35H29zM31,34H32V35H31zM33,34H34V35H33z" fill="#0e1520"/></svg>
+    <p>Scan this code with the other phone's camera to open this page.</p>
+  </div>
+
+  <div class="card">
+    <h2>How to install</h2>
+    <ol class="steps">
+      <li>Tap <strong>Download for Android</strong> above.</li>
+      <li>Open the downloaded <code>SecureMessenger-0.2.apk</code> file (check your notifications or Downloads).</li>
+      <li>If Android warns about installing unknown apps, tap <strong>Settings</strong> and turn on <strong>Allow from this source</strong>, then go back and tap <strong>Install</strong>. If Google Play Protect says it doesn't recognize the developer, tap <strong>More details</strong>, then <strong>Install anyway</strong>.</li>
+      <li>Open <strong>Secure Messenger</strong> and pair with the other person using a QR code or voice code.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>What you get</h2>
+    <ul class="feat">
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>End-to-end encrypted.</strong> Messages are encrypted on your phone and can only be read on the other phone.</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Direct when possible.</strong> Phones try to connect straight to each other, which works well on Wi-Fi.</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Relay as a backup.</strong> When a direct connection fails, the relay passes along encrypted data it can't read, and briefly holds it in memory if the other phone is offline.</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Pair in person or by voice.</strong> Confirm who you're talking to with a QR code or a code read aloud.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Your data</h2>
+    <p class="plain">The relay never sees message content and doesn't save messages to disk. The camera is only for scanning pairing QR codes.</p>
+  </div>
+
+  <div class="card">
+    <p class="note"><strong>Invite only.</strong> The relay only accepts the people it's set up for, so this app won't work normally for anyone else. Don't install it unless you've been invited. It needs an Android phone with a 64-bit processor and can't be installed on an iPhone.</p>
+  </div>
+
+  <footer>
+    &copy; SpritzLive &middot; <a href="../">More apps</a> &middot; <a href="https://spritzlive.net/">spritzlive.net</a>
+  </footer>
+
+</div>
+</body>
+</html>
