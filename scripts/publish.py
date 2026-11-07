@@ -50,6 +50,16 @@ APPS = {
         signer="bfb3c0ccd636a7f7d5a1a8240ec96999f8a707fe794e61d8d089aff941466dfd",
         apk="SecureMessenger-{version}.apk",
     ),
+    "policescanner": dict(
+        source="policescanner", package="net.inetvisions.policescanner",
+        signer="be1d998b1000c6ce84e1aa8a7e5019c39bdf33360b7f2d14b3a2dc29fdaf49ff",
+        apk="PoliceScanner-{version}.apk",
+    ),
+    "compass": dict(
+        source="compassapp", package="com.spritzlive.compass",
+        signer="239372a5a027c5e5e7b752caee6e23e1c5eef81f745e3dbef4a248b9fd5cca60",
+        apk="TrueNorth-{version}.apk",
+    ),
     "messages": dict(
         source="smsmmsapp", package="net.spritzlive.smsmms",
         signer="7ebff1da4059ae4f82cff427b9d1859064dc98bda113dadaca31925754b160dd",
