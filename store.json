@@ -36,11 +36,11 @@
       "versionName": "1.12"
     },
     "mobilebrowser": {
-      "sha256": "101ec0d261530a0d17e10d22f31968088587a57a260e6e788ae4a43e506699fb",
+      "sha256": "bf17d458b789b69e0520e7999d2778324d67dd3a58275bcdead82ba0612d6064",
       "size": 2229066,
-      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/mobilebrowser-v1.5/MobileBrowser-1.5.apk",
-      "versionCode": 6,
-      "versionName": "1.5"
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/mobilebrowser-v1.6/MobileBrowser-1.6.apk",
+      "versionCode": 7,
+      "versionName": "1.6"
     },
     "odotrack": {
       "sha256": "2c716282eb801a2b9ffdcff8683d54604a82f084d3f8b582e5bc4b40c01156af",
