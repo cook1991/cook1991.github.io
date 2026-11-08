@@ -50,8 +50,6 @@ APPS = {
         signer="304145a77ef397452b27a64426b214488cf0b5cd0bb3ed5393f545e806a513f7",
         apk="IdentifySong-{version}.apk", apk_pattern=r"IdentifySong-[\d.]+\.apk",
         page=DOWNLOAD_LINE,
-        # The app calls AudD directly, so every install shares this token until it goes through a server.
-        allow_secrets=("AUDD_API_TOKEN",),
     ),
     "securemessenger": dict(
         source="securemessenger", package="net.spritzlive.securemessenger",
