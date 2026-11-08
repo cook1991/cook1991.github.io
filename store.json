@@ -57,11 +57,11 @@
       "versionName": "1.1"
     },
     "securemessenger": {
-      "sha256": "6d26f968e5b3a0fb89dae0861fba81eda2a6df2fdc86368ef2892fd0bf46d9a2",
+      "sha256": "72989be4dcf3c3cc9f5a5aa1c564da229ef39bc2e81505b523a36c9a940f9109",
       "size": 90705300,
-      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/securemessenger-v0.4/SecureMessenger-0.4.apk",
-      "versionCode": 4,
-      "versionName": "0.4"
+      "url": "https://github.com/cook1991/cook1991.github.io/releases/download/securemessenger-v0.5/SecureMessenger-0.5.apk",
+      "versionCode": 5,
+      "versionName": "0.5"
     },
     "skycast": {
       "sha256": "d87957fd6d91f3127304c08cf12d7d0f591ed39fcdb0f57a6e972a01dbcc8567",
