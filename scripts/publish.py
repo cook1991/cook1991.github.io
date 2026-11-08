@@ -33,6 +33,8 @@ SDK = Path(os.environ.get("ANDROID_HOME") or Path(os.environ["LOCALAPPDATA"]) / 
 # The version line under the download button on pages laid out like the messages page.
 DOWNLOAD_LINE = [(r"Version [\d.]+ (&middot; Android [\d.]+\+ &middot; ~)\d+(&nbsp;MB)", r"Version {version} \g<1>{mb}\g<2>")]
 
+# `allow_secrets` names keys from the source repo's .properties files whose values the
+# app ships on purpose; the secrets check below only warns about those.
 # `signer` pins each app's certificate: a release signed with anything else couldn't
 # update existing installs, so it must never go out. `page` holds the text on each
 # app's page that tracks the release, as (pattern, replacement) pairs.
@@ -48,6 +50,8 @@ APPS = {
         signer="304145a77ef397452b27a64426b214488cf0b5cd0bb3ed5393f545e806a513f7",
         apk="IdentifySong-{version}.apk", apk_pattern=r"IdentifySong-[\d.]+\.apk",
         page=DOWNLOAD_LINE,
+        # The app calls AudD directly, so every install shares this token until it goes through a server.
+        allow_secrets=("AUDD_API_TOKEN",),
     ),
     "securemessenger": dict(
         source="securemessenger", package="net.spritzlive.securemessenger",
@@ -60,6 +64,8 @@ APPS = {
         signer="489859355fdea0f85bd86383fce3019414f232d0c9ea930771f0d0d7c6ce0284",
         apk="MobileBrowser-{version}.apk", apk_pattern=r"MobileBrowser-[\d.]+\.apk",
         page=DOWNLOAD_LINE,
+        # stopscammers' read-only key for the phishing list (see its blocklist.php).
+        allow_secrets=("feedKey",),
     ),
     "policescanner": dict(
         source="policescanner", package="net.inetvisions.policescanner",
@@ -97,6 +103,8 @@ APPS = {
         signer="fe15a5f47945696124b27761a3fdcfbc9af8db652d366ffd3feac21d0ebc8d24",
         apk="SkyCast-v{version}.apk", apk_pattern=r"SkyCast-v[\d.]+\.apk",
         page=[(r"Download APK \(v[\d.]+\)", "Download APK (v{version})")],
+        # MapTiler's client key for the base map; every install shares its quota.
+        allow_secrets=("maptilerKey",),
     ),
     "odotrack": dict(
         source="speedometer", package="com.spritzlive.speedometer",
@@ -112,6 +120,20 @@ CREDENTIALS = re.compile(
     rb"|AIza[0-9A-Za-z_-]{35}|AKIA[0-9A-Z]{16}|xox[baprs]-[0-9A-Za-z-]{20,}"
     rb"|-----BEGIN [A-Z ]*PRIVATE KEY-----"
 )
+
+# Keys in a source repo's .properties files whose values are secrets. Their exact values
+# are looked for in the APK, which catches tokens with no recognizable format.
+SECRET_KEY = re.compile(r"(token|secret|password|key)$", re.I)
+
+
+def known_secrets(source):
+    """Yields (file, key, value) for each secret in the source repo's .properties files."""
+    for path in [*source.glob("*.properties"), *source.glob("app/*.properties")]:
+        for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+            key, sep, value = line.partition("=")
+            key, value = key.strip(), value.strip()
+            if sep and not key.startswith(("#", "!")) and SECRET_KEY.search(key) and len(value) >= 8:
+                yield path.name, key, value
 
 
 def fail(message):
@@ -143,7 +165,7 @@ def build_apk(source):
     return source / "app/build/outputs/apk/release/app-release.apk"
 
 
-def check_apk(apk, app):
+def check_apk(apk, app, source):
     """Returns the APK's version name and code after refusing anything unsafe to publish."""
     badging = run(build_tool("aapt2"), "dump", "badging", str(apk))
     package = re.search(r"package: name='([^']+)' versionCode='(\d+)' versionName='([^']+)'", badging)
@@ -157,11 +179,18 @@ def check_apk(apk, app):
     if not signer or signer[1] != app["signer"]:
         fail(f"{apk} isn't signed with this app's release key (got {signer and signer[1]})")
 
+    secrets = [(file, key, [value.encode(), value.encode("utf-16-le")]) for file, key, value in known_secrets(source)]
     with zipfile.ZipFile(apk) as contents:
         for name in contents.namelist():
-            hit = CREDENTIALS.search(contents.read(name))
+            data = contents.read(name)
+            hit = CREDENTIALS.search(data)
             if hit:
                 fail(f"{name} in {apk} contains what looks like a credential ({hit[0][:6].decode(errors='replace')}...)")
+            for file, key, forms in secrets:
+                if any(form in data for form in forms):
+                    if key not in app.get("allow_secrets", ()):
+                        fail(f"{name} in {apk} contains the value of {key} from {file}")
+                    print(f"Warning: {name} contains {key} from {file}, which this app ships on purpose")
     return package[3], int(package[2])
 
 
@@ -195,7 +224,7 @@ def main():
         run("git", "pull", "--ff-only", "--quiet", cwd=SITE)
 
     apk = args.apk or build_apk(source)
-    version, version_code = check_apk(apk, app)
+    version, version_code = check_apk(apk, app, source)
     tag = f"{slug}-v{version}"
     filename = app["apk"].format(version=version)
     data = apk.read_bytes()
